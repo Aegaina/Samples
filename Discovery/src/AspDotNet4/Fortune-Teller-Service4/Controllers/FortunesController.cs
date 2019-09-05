@@ -1,4 +1,4 @@
-﻿
+
 using FortuneTellerService4.Models;
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
@@ -14,7 +14,7 @@ namespace FortuneTellerService4.Controllers
         public FortunesController()
         {
             _fortunes = new FortuneRepository(SampleData.FortuneContext);
-            _logger = LoggingConfig.LoggerFactory.CreateLogger<FortunesController>();
+            _logger = ApplicationContext.Current.LoggerFactory.CreateLogger<FortunesController>();
         }
 
         // GET: api/fortunes

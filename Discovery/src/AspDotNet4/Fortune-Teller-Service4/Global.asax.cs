@@ -1,28 +1,21 @@
-﻿using FortuneTellerService4.Models;
+using FortuneTellerService4.Models;
 using Microsoft.Extensions.Logging;
 using System.Web.Http;
-
 
 namespace FortuneTellerService4
 {
     public class WebApiApplication : System.Web.HttpApplication
     {
-
         private ILogger<WebApiApplication> logger;
+
         protected void Application_Start()
         {
             GlobalConfiguration.Configure(WebApiConfig.Register);
-
-            var config = GlobalConfiguration.Configuration;
+            //var config = GlobalConfiguration.Configuration;
 
             // Build application configuration
-            ApplicationConfig.RegisterConfig("development");
-            LoggingConfig.Register(ApplicationConfig.Configuration);
-            logger = LoggingConfig.LoggerFactory.CreateLogger<WebApiApplication>();
-
-     
-            DiscoveryConfig.Register(ApplicationConfig.Configuration, null);
-            logger.LogInformation("Discovery service started!");
+            ApplicationContext.Init();
+            logger = ApplicationContext.Current.LoggerFactory.CreateLogger<WebApiApplication>();
 
             SampleData.InitializeFortunes();
             logger.LogInformation("Fortunes populated!");
@@ -35,7 +28,7 @@ namespace FortuneTellerService4
             logger.LogInformation("Shutting down!");
 
             // Unregister current app with Service Discovery server
-            DiscoveryConfig.DiscoveryClient.ShutdownAsync().Wait();
+            ApplicationContext.Current.Eureka.DiscoveryClient.ShutdownAsync().Wait();
         }
     }
 }
