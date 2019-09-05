@@ -18,7 +18,7 @@ namespace FortuneTeller.Common
             IConfigurationBuilder builder = new ConfigurationBuilder().SetBasePath(GetContentRoot())
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: false)
                 .AddJsonFile($"appsettings.{environment}.json", optional: true);
-            AppendConfiguration(builder);
+            builder = AppendConfiguration(builder);
             builder = builder.AddEnvironmentVariables();
 
             Configuration = builder.Build();
@@ -43,6 +43,6 @@ namespace FortuneTeller.Common
             return Path.GetFullPath(basePath);
         }
 
-        protected abstract void AppendConfiguration(IConfigurationBuilder builder);
+        protected abstract IConfigurationBuilder AppendConfiguration(IConfigurationBuilder builder);
     }
 }

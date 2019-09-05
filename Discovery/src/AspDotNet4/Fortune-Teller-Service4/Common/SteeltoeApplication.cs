@@ -21,14 +21,14 @@ namespace FortuneTeller.Common
 
         #endregion
 
-        protected override void AppendConfiguration(IConfigurationBuilder builder)
+        protected override IConfigurationBuilder AppendConfiguration(IConfigurationBuilder builder)
         {
             if (builder == null)
             {
                 throw new ArgumentNullException(nameof(builder));
             }
 
-            builder = builder.AddCloudFoundry();
+            return builder.AddCloudFoundry();
         }
     }
 }
