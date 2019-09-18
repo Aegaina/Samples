@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="Environment" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">development</Value>
+      <Value Profile="(Default)">dev</Value>
     </Setting>
   </Settings>
 </SettingsFile>

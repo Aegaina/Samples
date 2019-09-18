@@ -25,7 +25,7 @@ namespace FortuneTellerService4.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("development")]
+        [global::System.Configuration.DefaultSettingValueAttribute("dev")]
         public string Environment {
             get {
                 return ((string)(this["Environment"]));

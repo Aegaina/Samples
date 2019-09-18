@@ -9,9 +9,9 @@ using Microsoft.Extensions.Logging;
 
 namespace FortuneTeller.Common
 {
-    public abstract class MsExtApplicationContext
+    public abstract class CoreApplicationContext
     {
-        public MsExtApplicationContext(string environment)
+        public CoreApplicationContext(string environment)
         {
             // Set up configuration sources.
             IConfigurationBuilder builder = new ConfigurationBuilder().SetBasePath(GetContentRoot())

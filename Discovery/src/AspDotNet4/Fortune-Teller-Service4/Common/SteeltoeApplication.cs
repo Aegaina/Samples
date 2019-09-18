@@ -5,7 +5,7 @@ using System.IO;
 
 namespace FortuneTeller.Common
 {
-    public class SteeltoeApplication : MsExtApplicationContext
+    public class SteeltoeApplication : CoreApplicationContext
     {
         public SteeltoeApplication(string environment) : base(environment)
         {
