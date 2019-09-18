@@ -3,16 +3,15 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Web;
+using Aegaina.Common;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Logging.Console;
-using Steeltoe.Extensions.Logging;
 
 namespace FortuneTeller.Common
 {
-    public abstract class ExtApplicationContext
+    public abstract class MsExtApplicationContext
     {
-        public ExtApplicationContext(string environment)
+        public MsExtApplicationContext(string environment)
         {
             // Set up configuration sources.
             IConfigurationBuilder builder = new ConfigurationBuilder().SetBasePath(GetContentRoot())
@@ -24,8 +23,7 @@ namespace FortuneTeller.Common
             Configuration = builder.Build();
 
             LoggerFactory = new LoggerFactory();
-            ILoggerProvider loggerProvider = new DynamicLoggerProvider(new ConsoleLoggerSettings().FromConfiguration(Configuration));
-            LoggerFactory.AddProvider(loggerProvider);
+            LoggerFactory.AddProvider(Log4NetProvider.Instance);
         }
 
         #region Properties

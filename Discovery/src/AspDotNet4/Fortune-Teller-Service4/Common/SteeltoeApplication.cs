@@ -1,14 +1,11 @@
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Logging.Console;
 using Steeltoe.Extensions.Configuration.CloudFoundry;
-using Steeltoe.Extensions.Logging;
 using System;
 using System.IO;
 
 namespace FortuneTeller.Common
 {
-    public class SteeltoeApplication : ExtApplicationContext
+    public class SteeltoeApplication : MsExtApplicationContext
     {
         public SteeltoeApplication(string environment) : base(environment)
         {
