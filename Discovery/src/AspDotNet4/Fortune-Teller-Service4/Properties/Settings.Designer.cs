@@ -31,5 +31,14 @@ namespace FortuneTellerService4.Properties {
                 return ((string)(this["Environment"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("json")]
+        public string ConfigFileExt {
+            get {
+                return ((string)(this["ConfigFileExt"]));
+            }
+        }
     }
 }

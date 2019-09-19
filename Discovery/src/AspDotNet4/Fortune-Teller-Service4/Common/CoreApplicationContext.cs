@@ -11,12 +11,17 @@ namespace FortuneTeller.Common
 {
     public abstract class CoreApplicationContext
     {
-        public CoreApplicationContext(string environment)
+        public CoreApplicationContext(string environment, string configFileExt)
         {
-            // Set up configuration sources.
-            IConfigurationBuilder builder = new ConfigurationBuilder().SetBasePath(GetContentRoot())
-                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: false)
-                .AddJsonFile($"appsettings.{environment}.json", optional: true);
+            if (string.IsNullOrWhiteSpace(configFileExt))
+            {
+                configFileExt = "json";
+            }
+
+            IConfigurationBuilder builder = new ConfigurationBuilder()
+                .SetBasePath(GetRootPath())
+                .AddJsonFile($"appsettings.{configFileExt}", optional: false, reloadOnChange: false)
+                .AddJsonFile($"appsettings.{environment}.{configFileExt}", optional: true);
             builder = AppendConfiguration(builder);
             builder = builder.AddEnvironmentVariables();
 
@@ -34,13 +39,13 @@ namespace FortuneTeller.Common
 
         #endregion
 
-        private string GetContentRoot()
+        protected abstract IConfigurationBuilder AppendConfiguration(IConfigurationBuilder builder);
+
+        public static string GetRootPath()
         {
             string basePath = AppDomain.CurrentDomain.GetData("APP_CONTEXT_BASE_DIRECTORY") as string ??
                AppDomain.CurrentDomain.BaseDirectory;
             return Path.GetFullPath(basePath);
         }
-
-        protected abstract IConfigurationBuilder AppendConfiguration(IConfigurationBuilder builder);
     }
 }

@@ -7,7 +7,8 @@ namespace FortuneTeller.Common
 {
     public class SteeltoeApplication : CoreApplicationContext
     {
-        public SteeltoeApplication(string environment) : base(environment)
+        public SteeltoeApplication(string environment, string configFileExt)
+            : base(environment, configFileExt)
         {
             Eureka = new EurekaSupport(this);
         }

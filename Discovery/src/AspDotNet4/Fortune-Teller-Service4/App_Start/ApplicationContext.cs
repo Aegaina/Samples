@@ -13,7 +13,7 @@ namespace FortuneTellerService4
 
         public static void Init()
         {
-            Current = new SteeltoeApplication(Settings.Default.Environment);
+            Current = new SteeltoeApplication(Settings.Default.Environment, Settings.Default.ConfigFileExt);
         }
     }
 }

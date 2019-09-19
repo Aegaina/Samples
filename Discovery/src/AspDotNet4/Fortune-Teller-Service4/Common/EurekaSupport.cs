@@ -5,7 +5,6 @@ using System.Linq;
 using System.Web;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
-using Pivotal.Discovery.Eureka;
 using Steeltoe.CloudFoundry.Connector;
 using Steeltoe.CloudFoundry.Connector.Services;
 using Steeltoe.Common.Discovery;
@@ -81,8 +80,8 @@ namespace FortuneTeller.Common
             EurekaServiceInfo svcInfo = GetSingletonDiscoveryServiceInfo() as EurekaServiceInfo;
             if (svcInfo != null)
             {
-                PivotalEurekaConfigurer.UpdateConfiguration(appContext.Configuration, svcInfo, clientOptions);
-                PivotalEurekaConfigurer.UpdateConfiguration(appContext.Configuration, svcInfo, instanceOptions);
+                EurekaPostConfigurer.UpdateConfiguration(appContext.Configuration, svcInfo, clientOptions);
+                EurekaPostConfigurer.UpdateConfiguration(appContext.Configuration, svcInfo, instanceOptions);
             }
 
             EurekaApplicationInfoManager appInfoManager = new EurekaApplicationInfoManager
